@@ -12,7 +12,7 @@ class IdModel extends Id {
   factory IdModel.fromJson(Map<String, dynamic> json) {
     return IdModel(
       name: json['name'],
-      value: json['value'],
+      value: json['value'] ?? '',
     );
   }
 

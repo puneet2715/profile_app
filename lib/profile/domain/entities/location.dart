@@ -7,7 +7,7 @@ class Location {
   final String city;
   final String state;
   final String country;
-  final num postcode;
+  final String postcode;
   final Coordinates coordinates;
   final Timezone timezone;
   Location({

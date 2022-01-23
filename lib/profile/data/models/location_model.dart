@@ -12,7 +12,7 @@ class LocationModel extends Location {
     required String city,
     required String state,
     required String country,
-    required num postcode,
+    required String postcode,
     required Coordinates coordinates,
     required Timezone timezone,
   }) : super(
@@ -31,7 +31,7 @@ class LocationModel extends Location {
       city: json['city'],
       state: json['state'],
       country: json['country'],
-      postcode: json['postcode'],
+      postcode: json['postcode'].toString(),
       coordinates: CoordinatesModel.fromJson(json['coordinates']),
       timezone: TimezoneModel.fromJson(json['timezone']),
     );

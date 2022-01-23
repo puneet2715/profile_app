@@ -8,23 +8,23 @@ abstract class ProfileState extends Equatable {
   List<Object> get props => [];
 }
 
-class Empty extends ProfileState {}
+class ProfileEmpty extends ProfileState {}
 
-class Loading extends ProfileState {}
+class ProfileLoading extends ProfileState {}
 
-class Loaded extends ProfileState {
+class ProfileLoaded extends ProfileState {
   final Profile profile;
 
-  Loaded(this.profile);
+  ProfileLoaded(this.profile);
 
   @override
   List<Object> get props => [profile];
 }
 
-class Error extends ProfileState {
+class ProfileError extends ProfileState {
   final String message;
 
-  Error({required this.message});
+  ProfileError({required this.message});
 
   @override
   List<Object> get props => [message];

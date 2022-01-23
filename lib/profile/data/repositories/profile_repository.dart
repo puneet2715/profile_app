@@ -21,21 +21,19 @@ class ProfileRepository implements IProfileRepository {
   Future<Either<Failure, Profile>> getProfile() async {
     if (await _networkInfo.isConnected) {
       try {
-        final models = await _remoteDataSource.getProfile();
-        final entities = models;
-        //final entities = models.map<Profile>((e) => e.toEntity()).toList();
-        await _localDataSource.cacheProfile(models);
-        return Right(entities);
+        final model = await _remoteDataSource.getProfile();
+        await _localDataSource.cacheProfile(model);
+        return Right(model);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
-      // try {
-      //   final models = _localDataSource.getLastProfile();
-      //   final entities = models.map<Profile>((e) => e.toEntity()).toList();
-      //   return Right(entities);
-      // } on CacheException {
-      return Left(CacheFailure());
+      try {
+        final model = await _localDataSource.getLastProfile();
+        return Right(model);
+      } on CacheException {
+        return Left(CacheFailure());
+      }
     }
   }
 }

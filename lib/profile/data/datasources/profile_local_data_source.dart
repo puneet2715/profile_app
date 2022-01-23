@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_profile/core/error/exceptions.dart';
 import 'package:flutter_profile/profile/data/models/profile_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class ProfileLocalDataSource {
@@ -17,6 +18,7 @@ abstract class ProfileLocalDataSource {
 // ignore: constant_identifier_names
 const CACHED_PROFILE = 'CACHED_PROFILE';
 
+@LazySingleton(as: ProfileLocalDataSource)
 class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
   final SharedPreferences sharedPreferences;
 
@@ -33,10 +35,10 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
   }
 
   @override
-  Future<void> cacheProfile(ProfileModel triviaToCache) {
+  Future<void> cacheProfile(ProfileModel profileToCache) {
     return sharedPreferences.setString(
       CACHED_PROFILE,
-      json.encode(triviaToCache.toJson()),
+      json.encode(profileToCache.toJson()),
     );
   }
 }

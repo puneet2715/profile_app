@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_profile/core/error/exceptions.dart';
 import 'package:flutter_profile/profile/data/models/profile_model.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class ProfileRemoteDataSource {
   /// Calls the http://numbersapi.com/random endpoint.
@@ -10,10 +11,11 @@ abstract class ProfileRemoteDataSource {
   Future<ProfileModel> getProfile();
 }
 
+@LazySingleton(as: ProfileRemoteDataSource)
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
-  final http.Client client;
+  final http.Client client = http.Client();
 
-  ProfileRemoteDataSourceImpl({required this.client});
+  ProfileRemoteDataSourceImpl();
 
   @override
   Future<ProfileModel> getProfile() =>
@@ -28,6 +30,10 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
+      // ignore: avoid_print
+      print("❤️❤️❤️❤️");
+      // ignore: avoid_print
+      print(json.decode(response.body));
       return ProfileModel.fromJson(json.decode(response.body));
     } else {
       throw ServerException();

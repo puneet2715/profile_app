@@ -8,7 +8,7 @@ class StreetModel extends Street {
 
   factory StreetModel.fromJson(Map<String, dynamic> json) {
     return StreetModel(
-      number: json['number'],
+      number: json['number'].toString(),
       name: json['name'],
     );
   }
