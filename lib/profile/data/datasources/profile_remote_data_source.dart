@@ -30,10 +30,6 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
-      // ignore: avoid_print
-      print("❤️❤️❤️❤️");
-      // ignore: avoid_print
-      print(json.decode(response.body));
       return ProfileModel.fromJson(json.decode(response.body));
     } else {
       throw ServerException();

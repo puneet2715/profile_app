@@ -121,7 +121,7 @@ class ProfileScreenPage extends StatelessWidget {
                             height: 10,
                           ),
                           ProfileContactCard(
-                            height: height * 0.10,
+                            height: height * 0.11,
                             phone: phone,
                             email: email,
                           ),
@@ -129,7 +129,7 @@ class ProfileScreenPage extends StatelessWidget {
                             height: 10,
                           ),
                           ProfileLocationCard(
-                            height: height * 0.10,
+                            height: height * 0.11,
                             location: location,
                           ),
                         ],
